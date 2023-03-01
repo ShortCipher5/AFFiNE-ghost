@@ -40,7 +40,7 @@ const passAuth = async (_page: Page) => {
   // open login modal
   await _page.getByTestId('workspace-name').click();
 
-  //check unlogin
+  //check logged out
   expect(await _page.locator('Sign in AFFiNE Cloud')).not.toBeNull();
 
   const affineLogin = await _page.evaluate(
@@ -98,7 +98,7 @@ const batchCreatePagesByNotes = async (_page: Page) => {
   const sourcePath = process.env.AFFiNE_LOCAL_SOURCE_PATH || './notes';
   const fileList = scanDirs(sourcePath).fileList;
   const pageTiles: string[] = removePrefixOfFileList(fileList, sourcePath);
-  // const supppoertedFileTypes = ['.md', '.markdown', '.mdown', '.mkdn'];
+  // const supportedFileTypes = ['.md', '.markdown', '.mdown', '.mkdn'];
   SYNC_CLOUD_TIME = fileList.length * 5000 + 5000;
   for (let i = 0; i < fileList.length; i++) {
     const file = fileList[i] as string;
