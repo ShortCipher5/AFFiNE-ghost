@@ -61,9 +61,10 @@ const createPage = async (_page: Page, title: string, content: string) => {
   await newPage(_page);
   await _page.getByPlaceholder('Title').click();
   await _page.getByPlaceholder('Title').fill(title);
-  await _page.getByRole('paragraph').click();
-
+  const editorDiv = await _page.waitForSelector('div.affine-block-children-container');
+  await editorDiv.click();
   // await _page.getByRole('paragraph').fill(content);
+
   const editorImportMakrdown = await _page.evaluate(
     function (o) {
       const editor = window.document.querySelector('editor-container');
